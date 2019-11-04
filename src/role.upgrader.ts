@@ -1,27 +1,28 @@
-export class roleUpgrader {
+import {CoreCreep} from "./core.creep";
+
+export class RoleUpgrader {
 
   public static run(creep: Creep) {
-    console.log('test');
-    if(creep.memory.upgrading && creep.carry.energy == 0) {
+    if (creep.memory.upgrading && creep.carry.energy === 0) {
       creep.memory.upgrading = false;
       creep.say('🔄 harvest');
     }
-    if(!creep.memory.upgrading && creep.carry.energy <= creep.carryCapacity) {
+    if (!creep.memory.upgrading && creep.carry.energy === creep.carryCapacity) {
       creep.memory.upgrading = true;
       creep.say('⚡ upgrade');
     }
-
-    if(creep.memory.upgrading) {
-      if(creep.upgradeController(<StructureController>creep.room.controller) == ERR_NOT_IN_RANGE) {
-        creep.moveTo((<StructureController>creep.room.controller).pos, {visualizePathStyle: {stroke: '#ffffff'}});
+    if (creep.memory.upgrading) {
+      if (creep.upgradeController(creep.room.controller as StructureController) === ERR_NOT_IN_RANGE) {
+        creep.moveTo((creep.room.controller as StructureController).pos, { visualizePathStyle: { stroke: '#ffffff' } });
       }
     }
     else {
-      var sources = creep.room.find(FIND_SOURCES);
-      if(creep.harvest(sources[0]) == ERR_NOT_IN_RANGE) {
-        creep.moveTo(sources[0], {visualizePathStyle: {stroke: '#ffaa00'}});
+      const sources = creep.room.find(FIND_SOURCES);
+      const minIndex = CoreCreep.findClosesSource(sources, creep.pos);
+      if (creep.harvest(sources[minIndex]) === ERR_NOT_IN_RANGE) {
+        creep.moveTo(sources[minIndex], { visualizePathStyle: { stroke: '#ffaa00' } });
       }
     }
   }
-};
+}
 
