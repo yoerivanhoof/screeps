@@ -1,8 +1,8 @@
-import {BaseCreep} from "./BaseCreep";
 import {CoreFunc} from "../../coreFunc";
+import {BaseCreep} from "./BaseCreep";
 
 export class HarvesterCreep extends BaseCreep {
-  work(): void {
+  public work(): void {
     if (this.creep.carry.energy < this.creep.carryCapacity) {
 
       const sources = this.creep.room.find(FIND_SOURCES);

@@ -1,8 +1,8 @@
-import {BaseCreep} from "./BaseCreep";
 import {CoreFunc} from "../../coreFunc";
+import {BaseCreep} from "./BaseCreep";
 
 export class GuardCreep extends BaseCreep{
-  work(): void {
+  public work(): void {
     const hostiles = this.creep.room.find(FIND_HOSTILE_CREEPS);
 
     if(hostiles.length > 0){

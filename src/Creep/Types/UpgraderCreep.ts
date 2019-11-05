@@ -1,8 +1,8 @@
-import {BaseCreep} from "./BaseCreep";
 import {CoreFunc} from "../../coreFunc";
+import {BaseCreep} from "./BaseCreep";
 
 export class UpgraderCreep extends BaseCreep {
-  work(): void {
+  public work(): void {
     if (this.creep.memory.upgrading && this.creep.carry.energy === 0) {
       this.creep.memory.upgrading = false;
       this.creep.say('🔄 harvest');

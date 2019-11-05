@@ -1,12 +1,10 @@
-import {AbstractCreepFactory} from "./AbstractCreepFactory";
+import {BuilderCollectingState} from "../State/BuilderCollectingState";
 import {BaseCreep} from "../Types/BaseCreep";
-import {BuilderCreep} from "../Types/BuilderCreep";
-import {GuardCreep} from "../Types/GuardCreep";
-import {HarvesterCreep} from "../Types/HarvesterCreep";
 import {UpgraderCreep} from "../Types/UpgraderCreep";
+import {AbstractCreepFactory} from "./AbstractCreepFactory";
 
-export class UpgraderCreepFactory extends AbstractCreepFactory{
-  factoryMethod(creep: Creep): BaseCreep {
-    return new UpgraderCreep(creep);
+export class UpgraderCreepFactory extends AbstractCreepFactory {
+  public factoryMethod(creep: Creep): BaseCreep {
+    return new UpgraderCreep(creep, new BuilderCollectingState());
   }
 }

@@ -1,10 +1,10 @@
 import {ErrorMapper} from "utils/ErrorMapper";
 import {CoreFunc} from "./coreFunc";
 import {AbstractCreepFactory} from "./Creep/CreepFactory/AbstractCreepFactory";
-import {HarvesterCreepFactory} from "./Creep/CreepFactory/HarvesterCreepFactory";
 import {BuilderCreepFactory} from "./Creep/CreepFactory/BuilderCreepFactory";
-import {UpgraderCreepFactory} from "./Creep/CreepFactory/UpgraderCreepFactory";
 import {GuardCreepFactory} from "./Creep/CreepFactory/GuardCreepFactory";
+import {HarvesterCreepFactory} from "./Creep/CreepFactory/HarvesterCreepFactory";
+import {UpgraderCreepFactory} from "./Creep/CreepFactory/UpgraderCreepFactory";
 import {BaseCreep} from "./Creep/Types/BaseCreep";
 
 const factories: { [type: string]: AbstractCreepFactory; } = {
@@ -17,7 +17,7 @@ const factories: { [type: string]: AbstractCreepFactory; } = {
 const creeps: BaseCreep[] = [];
 
 const population: { [role: string]: number } = {
-  'builder': 2,
+  'builder': 1,
   'harvester': 2,
   'upgrader': 2,
   'guard': 0
@@ -27,7 +27,7 @@ for (const name in Game.creeps) {
   const creep = Game.creeps[name];
 
   // @ts-ignore
-  creep.work = function () {
+  creep.work = () => {
     creeps.push(factories[creep.memory.role].build(creep));
   }
 
@@ -36,7 +36,7 @@ for (const name in Game.creeps) {
 // When compiling TS to JS and bundling with rollup, the line numbers and file names in error messages change
 // This utility uses source maps to get the line numbers and file names of the original, TS source code
 export const loop = ErrorMapper.wrapLoop(() => {
-  console.log('initialized creeps: ' + creeps.length);
+  console.log('initialized creepss: ' + creeps.length);
   // console.log(t++);
   console.log(`Current game tick is ${Game.time}`);
 
@@ -58,7 +58,7 @@ export const loop = ErrorMapper.wrapLoop(() => {
 
   const creepcount: { [type: string]: number } = {};
 
-  for (let populationKey in population) {
+  for (const populationKey in population) {
     const populationCount = _.filter(Game.creeps, (creep) => creep.memory.role === populationKey);
     creepcount[populationKey] = populationCount.length;
 
@@ -67,7 +67,7 @@ export const loop = ErrorMapper.wrapLoop(() => {
       CoreFunc.spawnCreep('Spawn1', populationKey)
     }
   }
-  console.log(`Current: Harvesters: ${creepcount['harvester']}. Builders: ${creepcount['builder']}. Upgraders: ${creepcount['upgrader']}.`);
+  console.log(`Current: Harvesters: ${creepcount.harvester}. Builders: ${creepcount.builder}. Upgraders: ${creepcount.upgrader}.`);
 
 
   for (const name in Game.creeps) {
