@@ -31,7 +31,7 @@ export class CoreFunc {
       Game.spawns[spawner].spawnCreep([ATTACK, ATTACK, TOUGH, TOUGH, MOVE], `${role} ${Game.time}`, {memory: {role}});
     } else {
       // @ts-ignore
-      const result = Game.spawns[spawner].spawnCreep([WORK, WORK, CARRY, CARRY, MOVE], `${role} ${Game.time}`, {memory: {role}});
+      const result = Game.spawns[spawner].spawnCreep([WORK, WORK, WORK, WORK, CARRY, CARRY, CARRY, CARRY, MOVE, MOVE, MOVE], `${role} ${Game.time}`, {memory: {role}});
 
       if (result === ERR_NOT_ENOUGH_ENERGY && role === 'harvester') { // make sure we can always spawn a harvester
         // @ts-ignore
