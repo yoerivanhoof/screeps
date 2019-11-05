@@ -1,8 +1,11 @@
 export abstract class BaseCreep {
-  public creep: Creep;
+  get creep(): Creep{
+    return Game.creeps[this._creep.name];
+  }
+  private _creep: Creep;
 
   public constructor(creep: Creep) {
-    this.creep = creep;
+    this._creep = creep;
   }
 
   public abstract work():void;
