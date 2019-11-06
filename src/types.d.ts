@@ -11,6 +11,14 @@ interface CreepMemory {
   targetY: number;
 }
 
+interface SpawnOptions{
+  memory: object
+}
+
+interface Creep{
+  work: object;
+}
+
 interface Memory {
   uuid: number;
   log: any;

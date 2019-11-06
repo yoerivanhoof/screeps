@@ -27,14 +27,11 @@ export class CoreFunc {
   public static spawnCreep(spawner: string, role: string) {
 
     if (role === 'guard') {
-      // @ts-ignore
       Game.spawns[spawner].spawnCreep([ATTACK, ATTACK, TOUGH, TOUGH, MOVE], `${role} ${Game.time}`, {memory: {role}});
     } else {
-      // @ts-ignore
-      const result = Game.spawns[spawner].spawnCreep([WORK, WORK, CARRY, CARRY, MOVE], `${role} ${Game.time}`, {memory: {role}});
+      const result = Game.spawns[spawner].spawnCreep([WORK, WORK, WORK, CARRY, CARRY, CARRY, MOVE], `${role} ${Game.time}`, {memory: {role}});
 
       if (result === ERR_NOT_ENOUGH_ENERGY && role === 'harvester') { // make sure we can always spawn a harvester
-        // @ts-ignore
         Game.spawns[spawner].spawnCreep([WORK, CARRY, MOVE], `${role} ${Game.time}`, {memory: {role}});
       }
     }

@@ -28,7 +28,6 @@ const population: { [role: string]: number } = {
 for (const name in Game.creeps) {
   const creep = Game.creeps[name];
 
-  // @ts-ignore
   creep.work = () => {
     creeps.push(factories[creep.memory.role].build(creep));
   }
@@ -41,8 +40,6 @@ profiler.enable();
 export const loop = ErrorMapper.wrapLoop(() => {
   profiler.wrap(function () {
 
-    // console.log('initialized creepss: ' + creeps.length);
-    // console.log(t++);
     // console.log(`Current game tick is ${Game.time}`);
 
     // Automatically delete memory of missing creeps
@@ -72,7 +69,7 @@ export const loop = ErrorMapper.wrapLoop(() => {
         CoreFunc.spawnCreep('Spawn1', populationKey)
       }
     }
-    console.log(`Current: Harvesters: ${creepcount.harvester}. Builders: ${creepcount.builder}. Upgraders: ${creepcount.upgrader}.`);
+    // console.log(`Current: Harvesters: ${creepcount.harvester}. Builders: ${creepcount.builder}. Upgraders: ${creepcount.upgrader}.`);
 
 
     for (const name in Game.creeps) {
