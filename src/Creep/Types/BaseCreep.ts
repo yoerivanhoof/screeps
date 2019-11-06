@@ -1,18 +1,17 @@
-import {State} from "../State/State";
+import {CreepState} from "../State/CreepState";
 import {CoreFunc} from "../../coreFunc";
-import {BuilderBuildState} from "../State/BuilderBuildState";
+import {BuilderBuildState} from "../State/Builder/BuilderBuildState";
+import {StateMachine} from "../../StateMachine";
 
 export abstract class BaseCreep {
-  private _state: State;
+  private statemachine: StateMachine<BaseCreep> = new StateMachine<BaseCreep>(this);
 
-  get state(): State{
-    return this._state;
+  public revertToPreviousState(){
+    this.statemachine.revertToPreviousState()
   }
 
-  set state(state: State){
-    this._state.exit(this);
-    this._state = state;
-    this._state.enter(this);
+  set state(state: CreepState){
+    this.statemachine.state = state;
   }
 
   get creep(): Creep{
@@ -20,20 +19,13 @@ export abstract class BaseCreep {
   }
   private _creep: Creep;
 
-  public constructor(creep: Creep, state: State) {
+  public constructor(creep: Creep, state: CreepState) {
     this._creep = creep;
-    this._state = state;
+    this.creep.memory.state = state.constructor.name;
+    this.statemachine.state = state;
   }
 
   public work():void {
-    this._state.execute(this)
+    this.statemachine.execute();
   };
-
-  public collectResource(){
-    const sources = this.creep.room.find(FIND_SOURCES);
-    const minIndex = CoreFunc.findClosesSource(sources, this.creep.pos);
-    if (this.creep.harvest(sources[minIndex]) === ERR_NOT_IN_RANGE) {
-      this.creep.moveTo(sources[minIndex], {visualizePathStyle: {stroke: '#ffaa00'}});
-    }
-  }
 }

@@ -1,20 +1,44 @@
-import {State} from "./State";
+import {CreepState} from "./CreepState";
 import {BaseCreep} from "../Types/BaseCreep";
-import {HarvesterStoreEnergyState} from "./HarvesterStoreEnergyState";
-import {CoreFunc} from "../../coreFunc";
 
-export abstract class AbstractCollectingState implements State {
-  private sources: Source[] = [];
+export abstract class AbstractCollectingState implements CreepState {
 
   public enter(creep: BaseCreep): void {
     creep.creep.say('Collecting');
-    this.sources = creep.creep.room.find(FIND_SOURCES);
+    this.getPathToSource(creep);
+  }
+
+  private getPathToSource(creep: BaseCreep) {
+    let sources = creep.creep.room.find(FIND_SOURCES);
+
+    let closest = 500000;
+    sources.forEach(source => {
+      const path = PathFinder.search(creep.creep.pos, source.pos);
+      if (path.cost < closest) {
+        const pos = path.path[path.path.length - 1];
+        if (!PathFinder.search(creep.creep.pos, pos).incomplete) {
+          closest = path.cost;
+          creep.creep.memory.sourceId = source.id;
+        }
+      }
+    });
   }
 
   public execute(creep: BaseCreep): void {
-    const minIndex = CoreFunc.findClosesSource(this.sources, creep.creep.pos);
-    if (creep.creep.harvest(this.sources[minIndex]) === ERR_NOT_IN_RANGE) {
-      creep.creep.moveTo(this.sources[minIndex], {visualizePathStyle: {stroke: '#ffaa00'}});
+    if (creep.creep.harvest(Game.getObjectById(creep.creep.memory.sourceId) as Source) === ERR_NOT_IN_RANGE) {
+      let moveResult = creep.creep.moveTo((Game.getObjectById(creep.creep.memory.sourceId) as Source),
+        {
+          noPathFinding: true, visualizePathStyle: {fill: 'transparent', stroke: '#fff'}
+        });
+      if (moveResult == -5) {
+        creep.creep.moveTo((Game.getObjectById(creep.creep.memory.sourceId) as Source), {
+          visualizePathStyle: {fill: 'transparent', stroke: '#f00'}
+        });
+      }else if (moveResult == -2) {
+        this.getPathToSource(creep);
+      } else if (moveResult !== 0) {
+        console.log(`${creep.creep.name}: could not move. ${moveResult}`);
+      }
     }
   }
 

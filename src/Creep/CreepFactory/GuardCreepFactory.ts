@@ -1,4 +1,4 @@
-import {BuilderCollectingState} from "../State/BuilderCollectingState";
+import {BuilderCollectingState} from "../State/Builder/BuilderCollectingState";
 import {BaseCreep} from "../Types/BaseCreep";
 import {GuardCreep} from "../Types/GuardCreep";
 import {AbstractCreepFactory} from "./AbstractCreepFactory";

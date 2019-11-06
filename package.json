@@ -58,6 +58,8 @@
     "typescript": "^2.9.2"
   },
   "dependencies": {
+    "@types/screeps-profiler": "^1.2.2",
+    "screeps-profiler": "^2.0.1",
     "source-map": "~0.6.1"
   }
 }

@@ -1,13 +1,14 @@
-import {BaseCreep} from "../Types/BaseCreep";
+import {BaseCreep} from "../../Types/BaseCreep";
 import {HarvesterCollectingState} from "./HarvesterCollectingState";
-import {State} from "./State";
+import {CreepState} from "../CreepState";
+import {HarvesterCreep} from "../../Types/HarvesterCreep";
 
-export class HarvesterStoreEnergyState implements State {
-  public enter(creep: BaseCreep): void {
+export class HarvesterStoreEnergyState implements CreepState {
+  public enter(creep: HarvesterCreep): void {
     creep.creep.say('Store energy');
   }
 
-  public execute(creep: BaseCreep): void {
+  public execute(creep: HarvesterCreep): void {
     const targets = creep.creep.room.find(FIND_STRUCTURES, {
       filter: (structure) => {
         return (structure.structureType === STRUCTURE_EXTENSION
@@ -23,7 +24,7 @@ export class HarvesterStoreEnergyState implements State {
         creep.creep.moveTo(targets[0], {visualizePathStyle: {stroke: '#ffffff'}});
       }
     }else{
-      creep.creep.say("Everything full")
+      creep.creep.say("All full")
     }
 
     if (creep.creep.carry.energy === 0) {
@@ -31,7 +32,7 @@ export class HarvesterStoreEnergyState implements State {
     }
   }
 
-  public exit(creep: BaseCreep): void {
+  public exit(creep: HarvesterCreep): void {
     // todo
   }
 

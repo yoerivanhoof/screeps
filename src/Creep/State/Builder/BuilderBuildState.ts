@@ -1,14 +1,15 @@
-import {CoreFunc} from "../../coreFunc";
-import {BaseCreep} from "../Types/BaseCreep";
+import {CoreFunc} from "../../../coreFunc";
+import {BaseCreep} from "../../Types/BaseCreep";
 import {BuilderCollectingState} from "./BuilderCollectingState";
-import {State} from "./State";
+import {CreepState} from "../CreepState";
+import {BuilderCreep} from "../../Types/BuilderCreep";
 
-export class BuilderBuildState implements State {
-  public enter(creep: BaseCreep): void {
+export class BuilderBuildState implements CreepState {
+  public enter(creep: BuilderCreep): void {
     creep.creep.say('Building');
   }
 
-  public execute(creep: BaseCreep): void {
+  public execute(creep: BuilderCreep): void {
     const repairs = creep.creep.room.find(FIND_STRUCTURES, {
       filter: (structure) => {
         return (structure.hits < 1000)
@@ -36,7 +37,7 @@ export class BuilderBuildState implements State {
     }
   }
 
-  public exit(creep: BaseCreep): void {
+  public exit(creep: BuilderCreep): void {
     // todo
   }
 

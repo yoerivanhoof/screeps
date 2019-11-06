@@ -1,11 +1,12 @@
-import {BaseCreep} from "../Types/BaseCreep";
+import {BaseCreep} from "../../Types/BaseCreep";
 import {HarvesterStoreEnergyState} from "./HarvesterStoreEnergyState";
-import {State} from "./State";
-import {AbstractCollectingState} from "./AbstractCollectingState";
+import {CreepState} from "../CreepState";
+import {AbstractCollectingState} from "../AbstractCollectingState";
+import {HarvesterCreep} from "../../Types/HarvesterCreep";
 
 export class HarvesterCollectingState extends AbstractCollectingState {
 
-  public execute(creep: BaseCreep): void {
+  public execute(creep: HarvesterCreep): void {
     super.execute(creep);
 
     if(creep.creep.carry.energy === creep.creep.carryCapacity){
@@ -13,7 +14,7 @@ export class HarvesterCollectingState extends AbstractCollectingState {
     }
   }
 
-  public exit(creep: BaseCreep): void {
+  public exit(creep: HarvesterCreep): void {
     // todo
   }
 
