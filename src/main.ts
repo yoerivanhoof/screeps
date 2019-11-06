@@ -1,10 +1,10 @@
 import {ErrorMapper} from "utils/ErrorMapper";
 import {CoreFunc} from "./coreFunc";
-import {AbstractCreepFactory} from "./Creep/CreepFactory/AbstractCreepFactory";
-import {BuilderCreepFactory} from "./Creep/CreepFactory/BuilderCreepFactory";
-import {GuardCreepFactory} from "./Creep/CreepFactory/GuardCreepFactory";
-import {HarvesterCreepFactory} from "./Creep/CreepFactory/HarvesterCreepFactory";
-import {UpgraderCreepFactory} from "./Creep/CreepFactory/UpgraderCreepFactory";
+import {AbstractCreepFactory} from "./Creep/Factory/AbstractCreepFactory";
+import {BuilderCreepFactory} from "./Creep/Factory/BuilderCreepFactory";
+import {GuardCreepFactory} from "./Creep/Factory/GuardCreepFactory";
+import {HarvesterCreepFactory} from "./Creep/Factory/HarvesterCreepFactory";
+import {UpgraderCreepFactory} from "./Creep/Factory/UpgraderCreepFactory";
 import {BaseCreep} from "./Creep/Types/BaseCreep";
 import * as profiler from "screeps-profiler";
 
