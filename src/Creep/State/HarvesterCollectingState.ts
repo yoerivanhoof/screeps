@@ -1,17 +1,12 @@
 import {BaseCreep} from "../Types/BaseCreep";
 import {HarvesterStoreEnergyState} from "./HarvesterStoreEnergyState";
 import {State} from "./State";
+import {AbstractCollectingState} from "./AbstractCollectingState";
 
-export class HarvesterCollectingState implements State {
-  private sources: Source[] = [];
-
-  public enter(creep: BaseCreep): void {
-    creep.creep.say('Collecting');
-    this.sources = creep.creep.room.find(FIND_SOURCES);
-  }
+export class HarvesterCollectingState extends AbstractCollectingState {
 
   public execute(creep: BaseCreep): void {
-    creep.collectResource();
+    super.execute(creep);
 
     if(creep.creep.carry.energy === creep.creep.carryCapacity){
       creep.state = new HarvesterStoreEnergyState();
