@@ -1,7 +1,5 @@
-import {CreepState} from "../State/CreepState";
-import {CoreFunc} from "../../coreFunc";
-import {BuilderBuildState} from "../State/Builder/BuilderBuildState";
 import {StateMachine} from "../../StateMachine/StateMachine";
+import {CreepState} from "../State/CreepState";
 
 export abstract class BaseCreep {
   private statemachine: StateMachine<BaseCreep> = new StateMachine<BaseCreep>(this);

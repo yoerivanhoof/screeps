@@ -1,5 +1,4 @@
 import {CoreFunc} from "../coreFunc";
-import {CoreCreep} from "./core.Creep";
 
 export class RoleTower {
   public static run(tower: StructureTower){

@@ -1,5 +1,5 @@
-import {AbstractCollectingState} from "../AbstractCollectingState";
 import {UpgraderCreep} from "../../Types/UpgraderCreep";
+import {AbstractCollectingState} from "../AbstractCollectingState";
 import {UpgraderUpgradingState} from "./UpgraderUpgradingState";
 
 export class UpgraderCollectingState extends AbstractCollectingState {

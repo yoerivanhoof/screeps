@@ -1,5 +1,5 @@
-import {BaseCreep} from "../Types/BaseCreep";
 import {State} from "../../StateMachine/State";
+import {BaseCreep} from "../Types/BaseCreep";
 
 export abstract class CreepState implements State<BaseCreep>{
   public enter(creep: BaseCreep):void{

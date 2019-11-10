@@ -1,8 +1,6 @@
-import {BaseCreep} from "../../Types/BaseCreep";
-import {HarvesterStoreEnergyState} from "./HarvesterStoreEnergyState";
-import {CreepState} from "../CreepState";
-import {AbstractCollectingState} from "../AbstractCollectingState";
 import {HarvesterCreep} from "../../Types/HarvesterCreep";
+import {AbstractCollectingState} from "../AbstractCollectingState";
+import {HarvesterStoreEnergyState} from "./HarvesterStoreEnergyState";
 
 export class HarvesterCollectingState extends AbstractCollectingState {
 

@@ -1,3 +1,4 @@
+import * as profiler from "screeps-profiler";
 import {ErrorMapper} from "utils/ErrorMapper";
 import {CoreFunc} from "./coreFunc";
 import {AbstractCreepFactory} from "./Creep/Factory/AbstractCreepFactory";
@@ -6,7 +7,6 @@ import {GuardCreepFactory} from "./Creep/Factory/GuardCreepFactory";
 import {HarvesterCreepFactory} from "./Creep/Factory/HarvesterCreepFactory";
 import {UpgraderCreepFactory} from "./Creep/Factory/UpgraderCreepFactory";
 import {BaseCreep} from "./Creep/Types/BaseCreep";
-import * as profiler from "screeps-profiler";
 
 
 const factories: { [type: string]: AbstractCreepFactory; } = {
@@ -38,7 +38,7 @@ profiler.enable();
 // When compiling TS to JS and bundling with rollup, the line numbers and file names in error messages change
 // This utility uses source maps to get the line numbers and file names of the original, TS source code
 export const loop = ErrorMapper.wrapLoop(() => {
-  profiler.wrap(function () {
+  profiler.wrap(() => {
 
     // console.log(`Current game tick is ${Game.time}`);
 

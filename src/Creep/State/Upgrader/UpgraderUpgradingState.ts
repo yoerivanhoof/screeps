@@ -1,13 +1,13 @@
-import {CreepState} from "../CreepState";
 import {UpgraderCreep} from "../../Types/UpgraderCreep";
+import {CreepState} from "../CreepState";
 import {UpgraderCollectingState} from "./UpgraderCollectingState";
 
 export class UpgraderUpgradingState implements CreepState {
-  enter(creep: UpgraderCreep): void {
+  public enter(creep: UpgraderCreep): void {
     creep.creep.say("Upgrading")
   }
 
-  execute(creep: UpgraderCreep): void {
+  public execute(creep: UpgraderCreep): void {
     if (creep.creep.upgradeController(creep.creep.room.controller as StructureController) === ERR_NOT_IN_RANGE) {
       creep.creep.moveTo((creep.creep.room.controller as StructureController).pos, { visualizePathStyle: { stroke: '#ffffff' } });
     }
@@ -17,8 +17,8 @@ export class UpgraderUpgradingState implements CreepState {
     }
   }
 
-  exit(creep: UpgraderCreep): void {
-
+  public exit(creep: UpgraderCreep): void {
+    // todo
   }
 
 }

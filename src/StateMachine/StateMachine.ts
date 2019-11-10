@@ -1,7 +1,7 @@
 import {State} from "./State";
 
 export class StateMachine<T> {
-  private _owner: T;
+  private readonly _owner: T;
   private _previousState?: State<T>;
   private _currentState?: State<T>;
 

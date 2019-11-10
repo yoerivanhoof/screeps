@@ -1,8 +1,7 @@
 import {CoreFunc} from "../../../coreFunc";
-import {BaseCreep} from "../../Types/BaseCreep";
-import {BuilderCollectingState} from "./BuilderCollectingState";
-import {CreepState} from "../CreepState";
 import {BuilderCreep} from "../../Types/BuilderCreep";
+import {CreepState} from "../CreepState";
+import {BuilderCollectingState} from "./BuilderCollectingState";
 
 export class BuilderBuildState implements CreepState {
   public enter(creep: BuilderCreep): void {

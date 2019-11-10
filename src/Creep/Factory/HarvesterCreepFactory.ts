@@ -1,9 +1,9 @@
+import {CreepState} from "../State/CreepState";
 import {HarvesterCollectingState} from "../State/Harvester/HarvesterCollectingState";
+import {HarvesterStoreEnergyState} from "../State/Harvester/HarvesterStoreEnergyState";
 import {BaseCreep} from "../Types/BaseCreep";
 import {HarvesterCreep} from "../Types/HarvesterCreep";
 import {AbstractCreepFactory} from "./AbstractCreepFactory";
-import {CreepState} from "../State/CreepState";
-import {HarvesterStoreEnergyState} from "../State/Harvester/HarvesterStoreEnergyState";
 
 export class HarvesterCreepFactory extends AbstractCreepFactory {
   public factoryMethod(creep: Creep): BaseCreep {

@@ -1,19 +1,21 @@
-import {CreepState} from "./CreepState";
 import {BaseCreep} from "../Types/BaseCreep";
+import {CreepState} from "./CreepState";
 
-export class GlobalCreepState implements CreepState{
-  enter(creep: BaseCreep): void {
+export class GlobalCreepState implements CreepState {
+  public enter(creep: BaseCreep): void {
+    // todo
   }
 
-  execute(creep: BaseCreep): void {
-    if(creep.creep.ticksToLive) {
+  public execute(creep: BaseCreep): void {
+    if (creep.creep.ticksToLive) {
       if (creep.creep.ticksToLive < 100) {
-        //todo create and set state renewCreep
+        // todo create and set state renewCreep
       }
     }
   }
 
-  exit(creep: BaseCreep): void {
+  public exit(creep: BaseCreep): void {
+    // todo
   }
 
 }

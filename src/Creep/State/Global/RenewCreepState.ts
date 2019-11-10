@@ -1,11 +1,12 @@
-import {CreepState} from "../CreepState";
 import {BaseCreep} from "../../Types/BaseCreep";
+import {CreepState} from "../CreepState";
 
 export class RenewCreepState implements CreepState{
-  enter(creep: BaseCreep): void {
+  public enter(creep: BaseCreep): void {
+    // todo
   }
 
-  execute(creep: BaseCreep): void {
+  public execute(creep: BaseCreep): void {
 
 
     if(true){ // todo creep is renewed
@@ -13,7 +14,8 @@ export class RenewCreepState implements CreepState{
     }
   }
 
-  exit(creep: BaseCreep): void {
+  public exit(creep: BaseCreep): void {
+    // todo
   }
 
 }
