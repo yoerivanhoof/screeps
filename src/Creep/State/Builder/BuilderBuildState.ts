@@ -22,7 +22,13 @@ export class BuilderBuildState implements CreepState {
         }
       }
     } else {
-      const constructions = creep.creep.room.find(FIND_CONSTRUCTION_SITES);
+
+      let constructions = creep.creep.room.find(FIND_CONSTRUCTION_SITES);
+      if(creep.creep.memory.multiroom){
+        if(Game.flags.build){
+          constructions = (Game.flags.build.room as Room).find(FIND_CONSTRUCTION_SITES);
+        }
+      }
       const closestIndex = CoreFunc.findClosestBuild(constructions, creep.creep.pos);
       if (constructions.length) {
         if (creep.creep.build(constructions[closestIndex]) === ERR_NOT_IN_RANGE) {

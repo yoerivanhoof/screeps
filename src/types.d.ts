@@ -9,6 +9,7 @@ interface CreepMemory {
   sourceId: string;
   targetX: number;
   targetY: number;
+  multiroom: boolean;
 }
 
 interface SpawnOptions{

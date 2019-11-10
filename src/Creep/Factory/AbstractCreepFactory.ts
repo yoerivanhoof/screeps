@@ -1,9 +1,14 @@
 import {BaseCreep} from "../Types/BaseCreep";
 
 export abstract class AbstractCreepFactory {
-  public abstract factoryMethod(creep:Creep): BaseCreep;
+  public abstract factoryInitialize(creep:Creep): BaseCreep;
+  public abstract factorySpawn(spawn:string): boolean;
 
-  public build(creep:Creep): BaseCreep{
-    return  this.factoryMethod(creep);
+  public initialize(creep:Creep): BaseCreep{
+    return  this.factoryInitialize(creep);
+  }
+
+  public spawn(spawn:string):boolean{
+    return this.factorySpawn(spawn);
   }
 }

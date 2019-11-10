@@ -4,6 +4,8 @@ import {CreepState} from "../State/CreepState";
 export abstract class BaseCreep {
   private statemachine: StateMachine<BaseCreep> = new StateMachine<BaseCreep>(this);
 
+  public static body: string[] = [MOVE];
+
   public revertToPreviousState(){
     this.statemachine.revertToPreviousState()
   }

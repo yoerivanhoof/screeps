@@ -85,7 +85,7 @@ export default {
       // returns 'true' if code is bundled in prod mode
       PRODUCTION: JSON.stringify(isProduction),
       // you can also use this to include deploy-related data, such as
-      // date + time of build, as well as latest commit ID from git
+      initialize
       __BUILD_TIME__: JSON.stringify(Date.now()),
       __REVISION__: JSON.stringify(require('git-rev-sync').short()),
     })
