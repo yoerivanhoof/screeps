@@ -16,6 +16,10 @@ export class ScoutCreepFactory extends AbstractCreepFactory {
   }
 
   public factorySpawn(spawn: string): boolean {
-    return Game.spawns[spawn].spawnCreep(ScoutCreep.body, `Scout: ${Game.time}`, {memory:{role:'scout'}}) === 0;
+    if(Game.flags.scout) {
+      return Game.spawns[spawn].spawnCreep(ScoutCreep.body, `Scout: ${Game.time}`, {memory: {role: 'scout'}}) === 0;
+    }else{
+      return false;
+    }
   }
 }

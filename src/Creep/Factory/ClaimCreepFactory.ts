@@ -16,6 +16,10 @@ export class ClaimCreepFactory extends AbstractCreepFactory {
   }
 
   public factorySpawn(spawn: string): boolean {
-    return Game.spawns[spawn].spawnCreep(ClaimCreep.body, `Claim: ${Game.time}`, {memory:{role:'claim'}}) === 0;
+    if(Game.flags.claim) {
+      return Game.spawns[spawn].spawnCreep(ClaimCreep.body, `Claim: ${Game.time}`, {memory: {role: 'claim'}}) === 0;
+    }else{
+      return false;
+    }
   }
 }

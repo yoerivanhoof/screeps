@@ -29,8 +29,8 @@ const population: { [role: string]: number } = {
   'upgrader': 2,
   'builder': 2,
   'guard': 5,
-  'scout': 0,
-  'claim': 0
+  'scout': 1,
+  'claim': 1
 };
 
 for (const spawnname in Game.spawns){
