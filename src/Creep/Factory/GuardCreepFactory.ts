@@ -6,8 +6,10 @@ import {CreepState} from "../State/CreepState";
 import {BuilderBuildState} from "../State/Builder/BuilderBuildState";
 import {BuilderCollectingState} from "../State/Builder/BuilderCollectingState";
 import {BuilderCreep} from "../Types/BuilderCreep";
+import {BaseRoom} from "../../Room/Types/BaseRoom";
 
 export class GuardCreepFactory extends AbstractCreepFactory {
+  public static creepType = 'guard';
   public factoryInitialize(creep: Creep): BaseCreep {
     if (creep.memory.state) {
       const states: { [state: string]: CreepState } = {
@@ -19,7 +21,7 @@ export class GuardCreepFactory extends AbstractCreepFactory {
 
   }
 
-  public factorySpawn(spawn: string): boolean {
-    return Game.spawns[spawn].spawnCreep(GuardCreep.body, `Guard: ${Game.time}`, {memory:{role:'guard'}}) === 0;
+  public factorySpawn(room: BaseRoom): boolean {
+    return Game.spawns[room.room.name].spawnCreep(GuardCreep.body, `Guard: ${Game.time}`, {memory:{role:'guard', room: Game.spawns[room.room.name].room.name}}) === 0;
   }
 }

@@ -4,8 +4,10 @@ import {UpgraderUpgradingState} from "../State/Upgrader/UpgraderUpgradingState";
 import {BaseCreep} from "../Types/BaseCreep";
 import {UpgraderCreep} from "../Types/UpgraderCreep";
 import {AbstractCreepFactory} from "./AbstractCreepFactory";
+import {BaseRoom} from "../../Room/Types/BaseRoom";
 
 export class UpgraderCreepFactory extends AbstractCreepFactory {
+  public static creepType = 'upgrader';
   public factoryInitialize(creep: Creep): BaseCreep {
     if(creep.memory.state){
       const states: {[state:string]: CreepState} = {
@@ -17,11 +19,11 @@ export class UpgraderCreepFactory extends AbstractCreepFactory {
     return new UpgraderCreep(creep, new UpgraderUpgradingState());
   }
 
-  public factorySpawn(spawn: string): boolean {
-    if (Game.spawns[spawn].room.energyCapacityAvailable < 400) {
-      return Game.spawns[spawn].spawnCreep(UpgraderCreep.bodySmall, `Upgrader: ${Game.time}`, {memory: {role: 'upgrader'}}) === 0
+  public factorySpawn(room:BaseRoom): boolean {
+    if (Game.spawns[room.room.name].room.energyCapacityAvailable < 400) {
+      return Game.spawns[room.room.name].spawnCreep(UpgraderCreep.bodySmall, `Upgrader: ${Game.time}`, {memory: {role: 'upgrader', room: Game.spawns[room.room.name].room.name}}) === 0
     } else {
-      return Game.spawns[spawn].spawnCreep(UpgraderCreep.body, `Upgrader: ${Game.time}`, {memory: {role: 'upgrader'}}) === 0;
+      return Game.spawns[room.room.name].spawnCreep(UpgraderCreep.body, `Upgrader: ${Game.time}`, {memory: {role: 'upgrader', room: Game.spawns[room.room.name].room.name}}) === 0;
     }
   }
 }

@@ -3,8 +3,10 @@ import {CreepState} from "../State/CreepState";
 import {BaseCreep} from "../Types/BaseCreep";
 import {ClaimCreep} from "../Types/ClaimCreep";
 import {AbstractCreepFactory} from "./AbstractCreepFactory";
+import {BaseRoom} from "../../Room/Types/BaseRoom";
 
 export class ClaimCreepFactory extends AbstractCreepFactory {
+  public static creepType = 'claim';
   public factoryInitialize(creep: Creep): BaseCreep {
     if(creep.memory.state){
       const states: {[state:string]: CreepState} = {
@@ -15,9 +17,9 @@ export class ClaimCreepFactory extends AbstractCreepFactory {
     return new ClaimCreep(creep, new ClaimClaimingState());
   }
 
-  public factorySpawn(spawn: string): boolean {
+  public factorySpawn(room: BaseRoom): boolean {
     if(Game.flags.claim) {
-      return Game.spawns[spawn].spawnCreep(ClaimCreep.body, `Claim: ${Game.time}`, {memory: {role: 'claim'}}) === 0;
+      return Game.spawns[room.room.name].spawnCreep(ClaimCreep.body, `Claim: ${Game.time}`, {memory: {role: 'claim', room: Game.spawns[room.room.name].room.name}}) === 0;
     }else{
       return false;
     }

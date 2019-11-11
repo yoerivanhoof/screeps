@@ -1,4 +1,4 @@
-import {State} from "../../StateMachine/State";
+import {State} from "../../Abstract/StateMachine/State";
 import {BaseCreep} from "../Types/BaseCreep";
 
 export abstract class CreepState implements State<BaseCreep>{

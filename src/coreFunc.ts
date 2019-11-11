@@ -24,23 +24,6 @@ export class CoreFunc {
     }));
   }
 
-  public static spawnCreep(spawner: string, role: string) {
-    console.log(`Spawning role:${role} as spawner: ${spawner}`);
-
-    if (role === 'guard') {
-      Game.spawns[spawner].spawnCreep([ATTACK, ATTACK, TOUGH, TOUGH, MOVE], `${role} ${Game.time}`, {memory: {role}});
-    }else if (role === 'scout'){
-      console.log(Game.spawns[spawner].spawnCreep([MOVE], `${role} ${Game.time}`, {memory: {role}}));
-    } else if (role === 'claim'){
-      console.log(Game.spawns[spawner].spawnCreep([CLAIM, CLAIM, MOVE], `${role} ${Game.time}`, {memory: {role}}));
-    }else {
-      const result = Game.spawns[spawner].spawnCreep([WORK, WORK, WORK, CARRY, CARRY, CARRY, MOVE], `${role} ${Game.time}`, {memory: {role}});
-
-      if (result === ERR_NOT_ENOUGH_ENERGY && role === 'harvester') { // make sure we can always spawn a harvester
-        Game.spawns[spawner].spawnCreep([WORK, CARRY, MOVE], `${role} ${Game.time}`, {memory: {role}});
-      }
-    }
-  }
 
   private static findClosest(source: RoomPosition, target: RoomPosition[]) {
     let min = 5000000;

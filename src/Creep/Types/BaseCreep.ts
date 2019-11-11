@@ -1,9 +1,9 @@
-import {StateMachine} from "../../StateMachine/StateMachine";
+import {StateMachine} from "../../Abstract/StateMachine/StateMachine";
 import {CreepState} from "../State/CreepState";
 
 export abstract class BaseCreep {
   private statemachine: StateMachine<BaseCreep> = new StateMachine<BaseCreep>(this);
-
+  public static creepName = 'abstract';
   public static body: string[] = [MOVE];
 
   public revertToPreviousState(){

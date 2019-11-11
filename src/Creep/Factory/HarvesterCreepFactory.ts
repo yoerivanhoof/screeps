@@ -5,8 +5,10 @@ import {BaseCreep} from "../Types/BaseCreep";
 import {HarvesterCreep} from "../Types/HarvesterCreep";
 import {AbstractCreepFactory} from "./AbstractCreepFactory";
 import {GuardCreep} from "../Types/GuardCreep";
+import {BaseRoom} from "../../Room/Types/BaseRoom";
 
 export class HarvesterCreepFactory extends AbstractCreepFactory {
+  public static creepType = 'harvester';
   public factoryInitialize(creep: Creep): BaseCreep {
     if(creep.memory.state){
       const states: {[state:string]: CreepState} = {
@@ -18,12 +20,12 @@ export class HarvesterCreepFactory extends AbstractCreepFactory {
     return new HarvesterCreep(creep, new HarvesterCollectingState());
   }
 
-  public factorySpawn(spawn: string): boolean {
+  public factorySpawn(room:BaseRoom): boolean {
     // console.log(`Spawn: ${spawn} energycapacity: ${Game.spawns[spawn].room.energyCapacityAvailable}`);
-    if(Game.spawns[spawn].room.energyAvailable < 400){
-      return Game.spawns[spawn].spawnCreep(HarvesterCreep.bodySmall, `Harvester: ${Game.time}`, {memory: {role: 'harvester'}}) === 0
+    if(Game.spawns[room.room.name].room.energyAvailable < 400){
+      return Game.spawns[room.room.name].spawnCreep(HarvesterCreep.bodySmall, `Harvester: ${Game.time}`, {memory: {role: 'harvester', room: Game.spawns[room.room.name].room.name}}) === 0
     }else {
-      return Game.spawns[spawn].spawnCreep(HarvesterCreep.body, `Harvester: ${Game.time}`, {memory: {role: 'harvester'}}) === 0;
+      return Game.spawns[room.room.name].spawnCreep(HarvesterCreep.body, `Harvester: ${Game.time}`, {memory: {role: 'harvester', room: Game.spawns[room.room.name].room.name}}) === 0;
     }
   }
 }
